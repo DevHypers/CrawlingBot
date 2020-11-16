@@ -36,7 +36,6 @@ def send_report():
     s.sendmail(str(os.environ["EMAIL"]), str("REPORT_EMAIL"), msg.as_string())
     s.quit()
 
-BlockingScheduler().add_job(send_report, 'date', run_date=datetime(*, *, *, 9, 00, 0), args=['text'])
 
 async def bt(games):
     await client.wait_until_ready()
@@ -50,6 +49,7 @@ async def bt(games):
 @client.event
 async def on_ready():
     print('logged in as {0.user}'.format(client))
+    BlockingScheduler().add_job(send_report, 'date', run_date=datetime(*, *, *, 9, 00, 0), args=['text'])
 
     ch = 0
     for g in client.guilds:
