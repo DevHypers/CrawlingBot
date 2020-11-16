@@ -5,7 +5,6 @@ from email.mime.text import MIMEText
 client = discord.Client()
 
 token = str(os.environ["DISCORD_TOKEN"])
-schedule.every().day.at("08:00").do(send_report)
 
 def get_today():
     today = datetime.today().strftime("%Y-%m-%d") 
@@ -36,6 +35,8 @@ def send_report():
     # 메일 전송
     s.sendmail(str(os.environ["EMAIL"]), str("REPORT_EMAIL"), msg.as_string())
     s.quit()
+
+schedule.every().day.at("08:00").do(send_report)
 
 async def bt(games):
     await client.wait_until_ready()
