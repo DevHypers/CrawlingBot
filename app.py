@@ -4,6 +4,7 @@ from email.mime.text import MIMEText
 from datetime import date
 
 client = discord.Client()
+sched = BlockingScheduler()
 
 token = str(os.environ["DISCORD_TOKEN"])
 
@@ -15,6 +16,7 @@ def get_yesterday():
     yesterday = date.today() - timedelta(1)
     return str(yesterday.strftime('%Y-%m-%d'))
 
+@sched.scheduled_job('cron', hour=9, minute=0)
 def send_report():
     # 세션생성, 로그인
     s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -50,7 +52,6 @@ async def bt(games):
 @client.event
 async def on_ready():
     print('logged in as {0.user}'.format(client))
-    BlockingScheduler().add_job(send_report, 'date', run_date=datetime(*, *, *, 9, 00, 0), args=['text'])
 
     ch = 0
     for g in client.guilds:
@@ -62,5 +63,6 @@ async def on_message(message):
     with open("./data/" + get_today() + ".txt", "at", encoding="UTF-8") as f:
         f.writelines(message.content + "\n")
         print(message.content)
-
+        
+sched.start()
 client.run(token)
