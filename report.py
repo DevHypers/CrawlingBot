@@ -1,4 +1,4 @@
-import os
+import os, smtplib
 from datetime import date
 from email.mime.text import MIMEText
 
