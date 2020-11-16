@@ -1,5 +1,5 @@
-import discord, asyncio, os
-import schedule, smtplib
+import discord, asyncio, os, smtplib
+from apscheduler.schedulers.blocking import BlockingScheduler
 from email.mime.text import MIMEText
 
 client = discord.Client()
@@ -36,7 +36,7 @@ def send_report():
     s.sendmail(str(os.environ["EMAIL"]), str("REPORT_EMAIL"), msg.as_string())
     s.quit()
 
-schedule.every().day.at("08:00").do(send_report)
+BlockingScheduler().add_job(send_report, 'date', run_date=datetime(*, *, *, 9, 00, 0), args=['text'])
 
 async def bt(games):
     await client.wait_until_ready()
