@@ -33,8 +33,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if not os.path.isdir("./data/"):                                                           
-        os.mkdir("./data/")
+    if not os.path.isdir("data"):                                                           
+        os.mkdir("data")
 
     with open("./data/" + get_today() + ".txt", "a+", encoding="UTF-8") as f:
         f.writelines(message.content + "\n")
