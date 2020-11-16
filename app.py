@@ -1,10 +1,7 @@
 import discord, asyncio, os, smtplib
-from apscheduler.schedulers.blocking import BlockingScheduler
 from email.mime.text import MIMEText
-from datetime import date
 
 client = discord.Client()
-sched = BlockingScheduler()
 
 token = str(os.environ["DISCORD_TOKEN"])
 
@@ -16,7 +13,6 @@ def get_yesterday():
     yesterday = date.today() - timedelta(1)
     return str(yesterday.strftime('%Y-%m-%d'))
 
-@sched.scheduled_job('cron', hour=9, minute=0)
 def send_report():
     # 세션생성, 로그인
     s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -63,6 +59,5 @@ async def on_message(message):
     with open("./data/" + get_today() + ".txt", "at", encoding="UTF-8") as f:
         f.writelines(message.content + "\n")
         print(message.content)
-        
-sched.start()
+
 client.run(token)
