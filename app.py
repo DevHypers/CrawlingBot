@@ -1,6 +1,7 @@
 import discord, asyncio, os, smtplib
 from apscheduler.schedulers.blocking import BlockingScheduler
 from email.mime.text import MIMEText
+from datetime import date
 
 client = discord.Client()
 
