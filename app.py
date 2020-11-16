@@ -1,4 +1,5 @@
 import discord, asyncio, os, smtplib
+from datetime import date
 from email.mime.text import MIMEText
 
 client = discord.Client()
@@ -6,7 +7,7 @@ client = discord.Client()
 token = str(os.environ["DISCORD_TOKEN"])
 
 def get_today():
-    today = datetime.today().strftime("%Y-%m-%d") 
+    today = date.today().strftime("%Y-%m-%d") 
     return str(today)
 
 def get_yesterday(): 
