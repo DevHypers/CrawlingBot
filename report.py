@@ -22,7 +22,7 @@ msg = MIMEMultipart()
 msg['Subject'] = get_yesterday() + " Report"
 
 # 파일첨부 (파일 미첨부시 생략가능)
-attachment = open(get_yesterday() + ".txt", 'rb')
+attachment = open("./data/" + get_yesterday() + ".txt", 'rb')
 part = MIMEBase('application', 'octet-stream')
 part.set_payload((attachment).read())
 encoders.encode_base64(part)
