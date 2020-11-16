@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 
 client = discord.Client()
 
-token = str(os.environ[DISCORD_TOKEN])
+token = str(os.environ["DISCORD_TOKEN"])
 schedule.every().day.at("08:00").do(send_report)
 
 def get_today():
