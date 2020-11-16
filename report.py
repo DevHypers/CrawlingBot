@@ -1,5 +1,5 @@
 import os, smtplib
-from datetime import date
+from datetime import date, timedelta
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
