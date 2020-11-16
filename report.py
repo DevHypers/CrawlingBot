@@ -2,7 +2,7 @@ import os, smtplib
 from datetime import date
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
-from email.MIMEMultipart import MIMEMultipart
+from email.mime.multipart import MIMEMultipart
 
 def get_today():
     today = date.today().strftime("%Y-%m-%d") 
