@@ -28,5 +28,5 @@ part.add_header('Content-Disposition', "attachment; filename= " + filename)
 msg.attach(part)
 
 # 메일 전송
-s.sendmail(stros.environ["EMAIL"]), str(os.environ["REPORT_EMAIL"]), msg.as_string())
+s.sendmail(str(os.environ["EMAIL"]), str(os.environ["REPORT_EMAIL"]), msg.as_string())
 s.quit()
